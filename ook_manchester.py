@@ -256,7 +256,7 @@ def ook_decode(decoding_buffer, frame_length, bit_duration, threshold = 100):
         while ind_cur_bit < clip_length:
             check_flag, decode_flag, sync_flag, sfr_flag, beacon_id, beacon_rssi, beacon_rssi_sigma, beacon_index, ind_next_bit, val_next_bit  \
                     = decode_frame(signal_clip, clip_length, ind_cur_bit, bit_duration, threshold)
-            print check_flag, decode_flag, sync_flag, sfr_flag, beacon_id, beacon_rssi, beacon_index + buffer_offset - len(signal_padding)
+            #print check_flag, decode_flag, sync_flag, sfr_flag, beacon_id, beacon_rssi, beacon_index + buffer_offset - len(signal_padding)
             # if check_flag is set True, a reliable beacon is detected, save it 
             if check_flag:
                 _beacon_index = beacon_index + buffer_offset - len(signal_padding)
@@ -272,7 +272,7 @@ def ook_decode(decoding_buffer, frame_length, bit_duration, threshold = 100):
                     lucky_count += 1
                     # get the lucky index
                     lucky_index = ind_next_bit - frame_length / 2 
-                    print 'Find %d beacons successfully !' %lucky_count
+                    #print 'Find %d beacons successfully !' %lucky_count
             # if a sfr could not be detected, it's time to terminate this round    
             elif not sfr_flag:
                 break
@@ -296,7 +296,7 @@ def ook_decode(decoding_buffer, frame_length, bit_duration, threshold = 100):
                 _rssi = beacon_rssi_list.pop(i)
                 _sigma = beacon_rssi_sigma_list.pop(i)
                 _ind = beacon_index_list.pop(i)    
-                print "Beacon: ID=%d, rssi=%.3f, sigma=%.3f, index=%d is removed !" %(_id, _rssi, _sigma, _ind)
+                #print "Beacon: ID=%d, rssi=%.3f, sigma=%.3f, index=%d is removed !" %(_id, _rssi, _sigma, _ind)
 
     return beacon_id_list, beacon_rssi_list, beacon_rssi_sigma_list, beacon_index_list
 

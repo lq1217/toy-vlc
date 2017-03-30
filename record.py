@@ -18,6 +18,7 @@ def usage():
 if __name__ == '__main__':
     
     card_list = alsaaudio.cards()
+    print card_list
 
     if u'Device' in card_list:
         device_index = card_list.index(u'Device')
