@@ -32,7 +32,7 @@ if __name__ == '__main__':
     if not args:
         usage()
 
-    volume = 0
+    volume = 16
     
     os.system("amixer -q -c %d sset 'Mic' %d" %(device_index, volume))
 
@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     # Set attributes: Mono, 44100 Hz, 16 bit little endian samples
     inp.setchannels(1)
-    inp.setrate(40000)
+    inp.setrate(48000)
     inp.setformat(alsaaudio.PCM_FORMAT_S16_LE)
 
     # The period size controls the internal number of frames per period.
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     # This means that the reads below will return either 320 bytes of data
     # or 0 bytes of data. The latter is possible because we are in nonblocking
     # mode.
-    inp.setperiodsize(256)
+    inp.setperiodsize(480)
 
     print("record 2s later")
     time.sleep(2) # delay 2 seconds
@@ -78,13 +78,9 @@ if __name__ == '__main__':
     
     os.system('play --no-show-progress --null --channels 1 synth %s sine %f' % (0.5, 2500))
    
-    plt.ion()
-
-    plt.figure(1)
-    plt.plot(data_cat)
-    plt.show()
-
     try:
-        input('wait...')
-    except:
+        plt.figure(1)
+        plt.plot(data_cat)
+        plt.show()
+    except KeyboardInterrupt:
         exit(0)
