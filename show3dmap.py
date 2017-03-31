@@ -39,7 +39,6 @@ ax = fig.gca(projection='3d')
 # Make data.
 X = np.arange(0, 6)
 Y = np.arange(0, 6)
-print X
 X, Y = np.meshgrid(X, Y)
 # Plot the surface.
 surf0 = ax.plot_surface(X, Y, finger0, cmap=cm.coolwarm, linewidth=0, antialiased=False)

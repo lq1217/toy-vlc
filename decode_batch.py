@@ -20,14 +20,11 @@ from vlc_config     import *
 def fetch_raw_signal(fil):
     f = open(fil, 'r')
     raw = []
-    for eachline in f.readlines():
-        line = eachline.split(' ')
-        line.remove('\n')
-        raw.extend(line)
-
+    for line in f:
+        raw.extend(line.split())
     f.close()
-    #inverse signal phase, since the hardware part induces a 180 phase difference
-    signal_raw = [-1.0 * int(x) for x in raw]
+    #inverse the signal phase, since the hardware induces a 180 phase shift 
+    signal_raw = [-1 * int(x) for x in raw]
     return signal_raw
 
 if __name__ == '__main__':

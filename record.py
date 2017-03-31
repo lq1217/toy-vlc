@@ -61,7 +61,7 @@ if __name__ == '__main__':
     time.sleep(2) # delay 2 seconds
     
     data_cat = []
-    loops = 200
+    loops = 500
     while loops > 0:
         loops -= 1
         # Read data from device
@@ -72,7 +72,8 @@ if __name__ == '__main__':
             print 'error, check'
             exit(1)
         for a in int_data:
-            f.write("%d,"%a)
+            f.write("%d "%a)
+        f.write('\n')   
         data_cat.extend(list(int_data))
     f.close()
     
